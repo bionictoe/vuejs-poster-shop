@@ -6,7 +6,8 @@ new Vue({
     total: 0,
     items: {},
     cart: [],
-    search: ''
+    newSearch: '',
+    lastSearch: ''
   },
   methods: {
     addItem: function (index) {
@@ -47,10 +48,11 @@ new Vue({
     },
     onSubmit: function () {
       this.$http
-      .get('/search/'.concat(this.search))
-      .then(function (res) {
-        this.items = res.data;
-      });
+        .get('/search/'.concat(this.search))
+        .then(function (res) {
+          this.lastSearch = this.newSearch;
+          this.items = res.data;
+        });
     }
   },
   filters: {
