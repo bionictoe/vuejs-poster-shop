@@ -1,15 +1,15 @@
 {
   "name": "vuejs-poster-shop",
   "version": "1.0.0",
-  "description": "Ultimate Vue.js Developers Course",
+  "description": "Demo project for rfreshing VueJS knowledge",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./index.js --ignore node_modules/ -e js,html,css"
   },
-  "author": "Anthony Gore <info@getjsdojo.com>",
+  "author": "Darragh King <imail@darraghking.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuejsdevelopers/vuejs-poster-shop"
+    "url": "https://github.com/bionictoe/vuejs-poster-shop"
   },
   "license": "UNLICENSED",
   "dependencies": {
