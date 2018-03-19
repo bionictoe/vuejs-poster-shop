@@ -1,10 +1,10 @@
-# Demo for VueJS
+# Demo VueJS project
 
 ### Vue.js Poster Shop
 
 #### Demo
 
-See the completed project here: [http://postershop.darraghking.com/](Darragh's Poster Shop)
+See the completed project here: [VueJS Poster Shop](http://postershop.darraghking.com)
 
 #### Pre-installation
 
@@ -58,4 +58,4 @@ See the completed project here: [http://postershop.darraghking.com/](Darragh's P
     npm run start
     ```
 
-5. Your site will be available at *localhost:[PORT]* where `PORT` is whatever value is set in your `.env` file.
+5. Your site will be available at [localhost:3000](localhost:3000) you can change this port number in your `.env` file.
