@@ -16,13 +16,13 @@ new Vue({
       this.total += 9.99;
       var item = this.items[index];
       var found = false;
-      for(var i = 0; i < this.cart.length; i++) {
-        if(this.cart[i].id === item.id) {
+      for (var i = 0; i < this.cart.length; i++) {
+        if (this.cart[i].id === item.id) {
           found = true;
           this.cart[i].qty++;
         }
       }
-      if(!found) {
+      if (!found) {
         this.cart.push({
           id: item.id,
           title: item.title,
@@ -30,10 +30,26 @@ new Vue({
           price: PRICE
         });
       }
+    },
+    inc: function (item) {
+      item.qty++;
+      this.total += PRICE;
+
+    },
+    dec: function (item) {
+      item.qty--;
+      this.total -= PRICE;
+      if(item.qty <= 0) {
+        for(var i = 0; i < this.cart.length; i++) {
+          if(this.cart[i].id === item.id) {
+            this.cart.splice(i, 1);
+          }
+        }
+      }
     }
   },
   filters: {
-    currency: function(price) {
+    currency: function (price) {
       return '€'.concat(price.toFixed(2));
     }
   }
