@@ -5,8 +5,9 @@ new Vue({
   data: {
     total: 0,
     items: [],
+    price: PRICE,
     cart: [],
-    newSearch: '',
+    newSearch: 'Rick and Morty',
     lastSearch: '',
     loading: false
   },
@@ -57,11 +58,15 @@ new Vue({
           this.lastSearch = this.newSearch;
           this.items = res.data;
         });
+      console.log('Se');
     }
   },
   filters: {
     currency: function (price) {
       return '€'.concat(price.toFixed(2));
     }
+  },
+  mounted: function () {
+    this.onSubmit();
   }
 });
