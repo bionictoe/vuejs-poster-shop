@@ -4,11 +4,7 @@ new Vue({
   el: '#app',
   data: {
     total: 0,
-    items: [
-      { id: 1, title: 'Item 1' },
-      { id: 2, title: 'Item 2' },
-      { id: 3, title: 'Item 3' }
-    ],
+    items: {},
     cart: [],
     search: ''
   },
@@ -36,7 +32,6 @@ new Vue({
     inc: function (item) {
       item.qty++;
       this.total += PRICE;
-
     },
     dec: function (item) {
       item.qty--;
@@ -51,7 +46,11 @@ new Vue({
       }
     },
     onSubmit: function () {
-      console.log('Searching for: ' + this.search);
+      this.$http
+      .get('/search/'.concat(this.search))
+      .then(function (res) {
+        this.items = res.data;
+      });
     }
   },
   filters: {
