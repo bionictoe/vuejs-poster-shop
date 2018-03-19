@@ -20,6 +20,7 @@ new Vue({
         if (this.cart[i].id === item.id) {
           found = true;
           this.cart[i].qty++;
+          break;
         }
       }
       if (!found) {
@@ -43,6 +44,7 @@ new Vue({
         for(var i = 0; i < this.cart.length; i++) {
           if(this.cart[i].id === item.id) {
             this.cart.splice(i, 1);
+            break;
           }
         }
       }
