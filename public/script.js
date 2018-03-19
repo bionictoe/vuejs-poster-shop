@@ -9,7 +9,8 @@ new Vue({
       { id: 2, title: 'Item 2' },
       { id: 3, title: 'Item 3' }
     ],
-    cart: []
+    cart: [],
+    search: ''
   },
   methods: {
     addItem: function (index) {
@@ -40,14 +41,17 @@ new Vue({
     dec: function (item) {
       item.qty--;
       this.total -= PRICE;
-      if(item.qty <= 0) {
-        for(var i = 0; i < this.cart.length; i++) {
-          if(this.cart[i].id === item.id) {
+      if (item.qty <= 0) {
+        for (var i = 0; i < this.cart.length; i++) {
+          if (this.cart[i].id === item.id) {
             this.cart.splice(i, 1);
             break;
           }
         }
       }
+    },
+    onSubmit: function () {
+      console.log('Searching for: ' + this.search);
     }
   },
   filters: {
