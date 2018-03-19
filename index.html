@@ -22,7 +22,7 @@
     <div class="main">
         <div class="products">
             <div class="product" v-for="(item, index) in items">
-                <h4 class="product-title">{{ item.title }}</h4>
+                <h4 class="product-title">{{ item.title }}</h4><br>
                 <button v-on:click="addItem(index)" class="add-to-cart button primary">Add to cart</button>
             </div>
         </div>
@@ -31,11 +31,11 @@
             <ul>
                 <li class="cart-items" v-for="item in cart">
                     <div class="item-title">{{ item.title }}</div>
-                    <span class="item-qty">{{ item.qty }}</span>
+                    <span class="item-qty">{{ item.price | currency }} x {{ item.qty }}</span>
                 </li>
             </ul>
             <div v-if="cart.length">
-                Total: {{ total }}
+                Total: {{ total | currency }}
             </div>
             <div v-if="!cart.length"><p>No items in the cart</p></div>
         </div>
@@ -46,6 +46,7 @@
 <!-- Scripts -->
 <script src="reload/reload.js"></script>
 <script src="node_modules/vue/dist/vue.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>-->
 <script type="text/javascript" src="public/script.js"></script>
 
 </body>
