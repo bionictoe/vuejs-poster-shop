@@ -156,6 +156,10 @@ h1 {
     border-radius: 2px;
 }
 
+.product-image:hover {
+    outline: 2px solid #F08080;
+}
+
 .product-image > img {
     width: 100%;
     display: block;

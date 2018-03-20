@@ -1,4 +1,5 @@
 var PRICE = 9.99;
+var LOAD_NUM = 5;
 
 new Vue({
   el: '#app',
@@ -7,11 +8,38 @@ new Vue({
     items: [],
     price: PRICE,
     cart: [],
-    newSearch: 'Rick and Morty',
+    results: [],
+    newSearch: 'Marvel',
     lastSearch: '',
     loading: false
   },
+  computed: {
+    noMoreItems: function () {
+      return this.items.length == this.results.length && this.results.length > 0;
+    }
+  },
   methods: {
+    appendItems: function () {
+      if(this.items.length <= this.results.length) {
+        var append = this.results.slice(this.items.length, this.items.length + LOAD_NUM);
+        this.items = this.items.concat(append);
+      }
+    },
+    onSubmit: function () {
+      this.loading = true;
+      this.items = [];
+      this.$http
+        .get('/search/'.concat(this.newSearch))
+        .then(function (res) {
+          this.loading = false;
+          this.lastSearch = this.newSearch;
+          this.results = res.data;
+          this.appendItems();
+          console.log(this.items);
+        });
+      console.log('Searching for: ', this.newSearch);
+
+    },
     addItem: function (index) {
       this.total += 9.99;
       var item = this.items[index];
@@ -47,18 +75,6 @@ new Vue({
           }
         }
       }
-    },
-    onSubmit: function () {
-      this.loading = true;
-      this.items = {};
-      this.$http
-        .get('/search/'.concat(this.search))
-        .then(function (res) {
-          this.loading = false;
-          this.lastSearch = this.newSearch;
-          this.items = res.data;
-        });
-      console.log('Se');
     }
   },
   filters: {
@@ -67,6 +83,12 @@ new Vue({
     }
   },
   mounted: function () {
+    var vueInstance = this;
     this.onSubmit();
+    var elem = document.getElementById('product-list-bottom');
+    var watcher = scrollMonitor.create(elem);
+    watcher.enterViewport(function () {
+      vueInstance.appendItems();
+    });
   }
 });

@@ -29,14 +29,16 @@
                     <div v-if="loading">
                         <img class="float-center" src="/public/loader.gif">
                     </div>
-                    <div class="search-results" v-else>Found {{ items.length }} results for search term
-                        <em>{{ lastSearch }}</em>
+                    <div class="search-results" v-else>Found {{ results.length }} results for search term
+                        <em>{{ newSearch }}</em>
                     </div>
                     <div class="product" v-for="(item, index) in items">
                         <div>
-                            <div class="product-image">
-                                <img :src="item.link">
-                            </div>
+                            <a :href="item.link" target="_blank">
+                                <div class="product-image">
+                                    <img :src="item.link">
+                                </div>
+                            </a>
                         </div>
                         <div>
                             <h4 class="product-title">{{ item.title }}</h4>
@@ -44,12 +46,16 @@
                             <button v-on:click="addItem(index)" class="btn add-to-cart button primary">Add to cart</button>
                         </div>
                     </div>
+                    <div id="product-list-bottom">
+                        <div v-if="noMoreItems">
+                            No more items
+                        </div>
+                    </div>
                 </div>
                 <div class="cart">
                     <h2>Shopping Cart</h2>
                     <transition-group name="fade" tag="ul">
                         <li class="cart-items" v-for="item in cart" :key="item.id">
-
                             <div class="item-title">{{ item.title }}</div>
                             <span class="item-qty">{{ item.price | currency }} x {{ item.qty }}</span>
                             <button class="btn" v-on:click="inc(item)">+</button>
@@ -75,6 +81,7 @@
         <script src="reload/reload.js"></script>
         <script src="node_modules/vue/dist/vue.js"></script>
         <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+        <script src="node_modules/scrollmonitor/scrollMonitor.js"></script>
         <script type="text/javascript" src="public/script.js"></script>
 
     </body>
