@@ -4,7 +4,7 @@
 
 #### Demo
 
-See the completed project here: [VueJS Poster Shop](http://postershop.darraghking.com)
+See the completed project here: [VueJS Poster Shop](https://vue-js-poster-shop.herokuapp.com/)
 
 #### Pre-installation
 
